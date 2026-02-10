@@ -1,0 +1,28 @@
+--write a query to cheeck if any duplicate are there in pk
+
+select cst_id , count(*)
+from silver.crm_cust_info
+group by cst_id
+having count(*) > 1;
+
+-- check for unwanted spaces in firstname values
+select distinct cst_firstname from silver.crm_cust_info
+where cst_firstname != trim(cst_firstname)
+
+-- check for unwanted spaces in lastname values
+select distinct cst_lastname from silver.crm_cust_info
+where cst_lastname != trim(cst_firstname)
+
+-- check for unwanted spaces in maritalstatus values
+select  cst_marital_status from silver.crm_cust_info
+where cst_marital_status != trim( cst_marital_status)
+
+
+-- check for unwanted spaces in gender values
+select  cst_gndr from silver.crm_cust_info
+where  cst_gndr != trim( cst_gndr)
+
+--check values in gender and status col
+select distinct cst_gndr from silver.crm_cust_info
+
+select distinct cst_marital_status from silver.crm_cust_info;
