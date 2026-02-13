@@ -1,0 +1,17 @@
+--chek id id from exp_px_cat_g1v2 matches with cat_id from crm_prd_info
+select * from bronze.erp_px_cat_g1v2
+
+select * from silver.crm_prd_info
+
+--check for unwanted sspace in cat and subcat
+
+select * from bronze.erp_px_cat_g1v2
+where cat != trim(cat) or subcat != trim(subcat)
+
+--lets see the values of maintances
+select distinct maintenance from bronze.erp_px_cat_g1v2
+
+
+
+
+
