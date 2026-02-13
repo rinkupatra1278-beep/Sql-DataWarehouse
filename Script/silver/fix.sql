@@ -120,6 +120,24 @@ case
    end as bdate,
    case
    when upper(trim(gen)) in('M' , 'Male') then 'Male'
+
+
+	-- insert clean data in silver.erp_loc_a101
+
+	insert into silver.erp_loc_a101(
+cid,
+cntry
+)
+SELECT
+REPLACE(cid,'-','') as cid,
+case
+ when trim(cntry) = 'DE' then 'Germany'
+ when trim(cntry) in ('US','USA') then 'United States'
+ when trim(cntry) = '' or cntry is null then 'n/a'
+ else trim(cntry)
+end as cntry
+FROM bronze.erp_loc_a101;
+
    when upper(trim(gen)) in ('F', 'Female') then 'Female'
    else 'n/a'
    end as gen
