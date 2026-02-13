@@ -142,3 +142,13 @@ FROM bronze.erp_loc_a101;
    else 'n/a'
    end as gen
    from bronze.erp_cust_az12
+
+	-- insert clean data in silver.erp_px_cat_g1v2
+
+insert into silver.erp_px_cat_g1v2(
+id,
+cat,
+subcat,
+maintenance)
+select *
+from bronze.erp_px_cat_g1v2;
